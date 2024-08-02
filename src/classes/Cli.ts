@@ -128,10 +128,10 @@ class Cli {
           parseInt(answers.topSpeed),
           []
         );
-        
+
         // push the car to the vehicles array
         this.vehicles.push(car);
-        
+
         // set the selectedVehicleVin to the vin of the car
         this.selectedVehicleVin = car.vin;
         // perform actions on the car
@@ -180,7 +180,7 @@ class Cli {
         },
       ])
 
-      
+
       .then((answers) => {
         // TODO: Use the answers object to pass the required properties to the Truck constructor
         // TODO: push the truck to the vehicles array
@@ -311,7 +311,7 @@ class Cli {
           console.log(`Truck cannot pull itself`);
           this.performActions();
         } else {
-          this.findVehicleToTow(answers);
+          answers.tow();
           this.performActions();
         }
       });
@@ -335,6 +335,8 @@ class Cli {
             'Turn right',
             'Turn left',
             'Reverse',
+            'Tow',
+            'Wheelie',
             'Select or create another vehicle',
             'Exit',
           ],
@@ -402,14 +404,14 @@ class Cli {
         // TODO: add statements to perform the tow action only if the selected vehicle is a truck. Call the findVehicleToTow method to find a vehicle to tow and pass the selected truck as an argument. After calling the findVehicleToTow method, you will need to return to avoid instantly calling the performActions method again since findVehicleToTow is asynchronous.
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
         else if (answers.action === 'Tow') {
-          if (answers.vehicleType === 'Truck') {
+          if (answers.vehicleType === "Truck") {
             this.findVehicleToTow(answers);
             this.performActions();
           } else {
             console.log("You need a truck to tow vehicles");
-            this.performActions();
           }
         }
+
 
         else if (answers.action === 'Wheelie') {
           if (answers.vehicleType === "Motorbike") {
@@ -417,7 +419,6 @@ class Cli {
             this.performActions();
           } else {
             console.log("You need a Motorbike to perform a wheelie");
-            this.performActions();
           }
         }
 
