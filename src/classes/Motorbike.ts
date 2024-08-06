@@ -31,15 +31,8 @@ class Motorbike extends Vehicle {
     this.weight = weight;
     this.topSpeed = topSpeed;
 
-    if (wheels.length < 2) {
-      this.wheels = [];
-
-      const wheels1 = new Wheel(69, "Michelin");
-      const wheels2 = new Wheel(287, "Power King");
-
-      this.wheels.push(wheels1);
-      this.wheels.push(wheels2);
-
+    if (wheels.length !== 2) {
+      this.wheels = [new Wheel(), new Wheel()];
     } else {
       this.wheels = wheels;
     }
@@ -48,7 +41,7 @@ class Motorbike extends Vehicle {
 
   // TODO: Implement the wheelie method
     // TODO: The method should log the message "Motorbike [make] [model] is doing a wheelie!"
-  wheelie() {
+  wheelie(): void{
     console.log(`Motorbike ${this.make} ${this.model} is doing a wheelie!`);
   }
 
@@ -58,15 +51,17 @@ class Motorbike extends Vehicle {
   // TODO: The details should include the VIN, make, model, year, weight, top speed, color, and wheels
   override printDetails(): void {
       super.printDetails();
+
       console.log(`Motorbike Details: 
         VIN: ${this.vin}
+        Color: ${this.color}
         Make: ${this.make}
         Model: ${this.model}
         Year: ${this.year}
         Weight: ${this.weight}
         Top Speed: ${this.topSpeed}
-        Color: ${this.color}
-        Wheels: ${this.wheels}`);
+        Wheel 1: ${this.wheels[0].getDiameter} inch with a ${this.wheels[0].getTireBrand} tire
+        Wheel 2: ${this.wheels[1].getDiameter} inch with a ${this.wheels[1].getTireBrand} tire`);
   }
 }
 
